@@ -1,0 +1,24 @@
+{
+  "name": "assetstore",
+  "version": "1.0.0",
+  "description": "",
+  "main": "compressImages.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nammayatri/AssetStore.git"
+  },
+  "author": "nammayatri",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nammayatri/AssetStore/issues"
+  },
+  "homepage": "https://github.com/nammayatri/AssetStore#readme",
+  "dependencies": {
+    "compress-images": "^2.0.4",
+    "mozjpeg": "^8.0.0",
+    "pngquant-bin": "^6.0.1"
+  }
+}

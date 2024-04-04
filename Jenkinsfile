@@ -1,4 +1,4 @@
-def allowedBranches = ["main", "jenkins"]
+def allowedBranches = ["main"]
 
 def uploadedFiles = ""
 
@@ -85,7 +85,7 @@ pipeline {
             script {
                 env.SUMMARY = "Files Uploaded: ${uploadedFiles == '' ? 'NA' : uploadedFiles}"
                 
-                def branchName = 'jenkins'
+                def branchName = 'main'
                 def commitMessage = "[skip ci] updating s3LastCommitPush"
                 
                 sh "git config user.email 'namma.yatri.jenkins@gmail.com'"

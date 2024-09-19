@@ -13,17 +13,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.client_payload.branch }}
+          ref: ${{ github.event.ref }}
       - name: Log event payload
         run: |
           echo "GitHub event payload:"
-          echo "1st -> ${{ toJson(github.event.client_payload) }}"
-          echo "2st -> ${{ github.event.client_payload }}"
-          echo "3rd -> ${{ toJson(github.event.client_payload.branch) }}"
+          echo "1st -> ${{ toJson(github.event.ref) }}"
+          # echo "3rd -> ${{ toJson(github.event.client_payload.branch) }}"
           echo "4th -> ${{ toJson(github.event) }}"
-          echo "5th -> ${{ github.event }}"
-          echo "6th -> ${{ toJson(github) }}"
-          echo "7th -> ${{ github }}"
+          # echo "6th -> ${{ toJson(github) }}"
+          
 
       - name: Create Pull Request
         run: |
@@ -31,7 +29,7 @@ jobs:
           REPO_OWNER=${{ github.repository_owner }}
           REPO_NAME=${{ github.event.repository.name }}
           BASE_BRANCH=main
-          HEAD_BRANCH=${{ github.event.client_payload.branch }}
+          HEAD_BRANCH=${{ github.event.ref }}
           TITLE="Merge ${HEAD_BRANCH} into ${BASE_BRANCH}"
           BODY="Created by GitHub action"
           TOKEN=${{ secrets.PAT_TOKEN }}

@@ -18,7 +18,12 @@ jobs:
         run: |
           echo "GitHub event payload:"
           echo "1st -> ${{ toJson(github.event.client_payload) }}"
-          echo "2nd -> ${{ github.event.client_payload.branch }}"
+          echo "2st -> ${{ github.event.client_payload }}"
+          echo "3rd -> ${{ toJson(github.event.client_payload.branch) }}"
+          echo "4th -> ${{ toJson(github.event) }}"
+          echo "5th -> ${{ github.event }}"
+          echo "6th -> ${{ toJson(github) }}"
+          echo "7th -> ${{ github }}"
 
       - name: Create Pull Request
         run: |

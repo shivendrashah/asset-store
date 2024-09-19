@@ -14,15 +14,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: ${{ github.event.ref }}
-      - name: Log event payload
-        run: |
-          echo "GitHub event payload:"
-          echo "1st -> ${{ toJson(github.event.ref) }}"
-          # echo "3rd -> ${{ toJson(github.event.client_payload.branch) }}"
-          echo "4th -> ${{ toJson(github.event) }}"
-          # echo "6th -> ${{ toJson(github) }}"
-          
-
+      
       - name: Create Pull Request
         run: |
           # Set variables

@@ -1,8 +1,9 @@
 name: Handle Incoming Changes
 
 on:
-  repository_dispatch:
-    types: [trigger_workflow]
+  create:
+    branches:
+      - '*'
 
 jobs:
   handle_changes:
@@ -12,24 +13,24 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.client_payload.branch }}
+          ref: ${{ github.ref }}
 
       - name: Log variables
         run: |
           echo "Repository owner: ${{ github.repository_owner }}"
-          echo "Repository name: ${{ github.event.repository.name }}"
+          echo "Repository name: ${{ github.repository }}"
           echo "Base branch: main"
-          echo "Head branch: ${{ github.event.client_payload.branch }}"
-          echo "Pull Request Title: Merge ${{ github.event.client_payload.branch }} into main"
+          echo "Head branch: ${{ github.ref }}"
+          echo "Pull Request Title: Merge ${{ github.ref }} into main"
           echo "Pull Request Body: Created by GitHub action"
 
       - name: Create Pull Request
         run: |
           # Set variables
           REPO_OWNER=${{ github.repository_owner }}
-          REPO_NAME=${{ github.event.repository.name }}
+          REPO_NAME=${{ github.repository }}
           BASE_BRANCH=main
-          HEAD_BRANCH=${{ github.event.client_payload.branch }}
+          HEAD_BRANCH=${{ github.ref }}
           TITLE="Merge ${HEAD_BRANCH} into ${BASE_BRANCH}"
           BODY="Created by GitHub action"
           TOKEN=${{ secrets.PAT_TOKEN }}

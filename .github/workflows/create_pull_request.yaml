@@ -1,8 +1,9 @@
 name: Handle Incoming Changes
 
 on:
-  repository_dispatch:
-    types: [trigger_workflow]
+  create:
+    branches:
+      - '*'
 
 jobs:
   handle_changes:

@@ -3,13 +3,18 @@ name: NammaYatri Branches
 on:
   create:
     branches:
-      - 'nammayatri-*'  # Trigger only when the branch name starts with 'react-'
+      - 'nammayatri-*'  # Trigger only when the branch name starts with 'nammayatri-'
 
 jobs:
   handle_changes:
     runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/heads/nammayatri-')  # Ensure the job runs only for nammayatri-* branches
 
     steps:
+      - name: Debug Event
+        run: |
+          echo "Event: ${{ toJson(github.event) }}"
+          
       - name: Checkout repository
         uses: actions/checkout@v2
         with:

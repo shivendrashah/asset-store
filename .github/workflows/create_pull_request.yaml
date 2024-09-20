@@ -8,8 +8,13 @@ on:
 jobs:
   handle_changes:
     runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/heads/react-')  # Ensure the job runs only for react-* branches
 
     steps:
+      - name: Debug Event
+        run: |
+          echo "Event: ${{ toJson(github.event) }}"
+
       - name: Checkout repository
         uses: actions/checkout@v2
         with:

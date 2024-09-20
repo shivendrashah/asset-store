@@ -1,9 +1,9 @@
-name: Handle Incoming Changes
+name: Handle Incoming Changes for React Branches
 
 on:
   create:
     branches:
-      - '*'
+      - 'react-*'  # Trigger only when the branch name starts with 'react-'
 
 jobs:
   handle_changes:
